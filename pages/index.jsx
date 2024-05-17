@@ -17,12 +17,12 @@ function Home() {
   const [homeData, setHomeData] = useState([])
   const [bestSellingData, setBestSellingData] = useState([])
 
-  // useEffect(() => {
-  //   (async () => {
-  //     axios.post("get-home-content").then(res => setHomeData(res?.data?.result))
-  //     axios.post("best-sellers").then(res => setBestSellingData(res?.data?.best_sellers))
-  //   })();
-  // }, []); 
+  useEffect(() => {
+    (async () => {
+      axios.post("get-home-content").then(res => setHomeData(res?.data?.result))
+      axios.post("best-sellers").then(res => setBestSellingData(res?.data?.best_sellers))
+    })();
+  }, []); 
 
   return (
     <>
@@ -43,10 +43,10 @@ function Home() {
         category1={homeData?.category_list?.[0]}
         category2={homeData?.category_list?.[1]}
       />
-      <TradingCollections
+      {/* <TradingCollections
         heading={homeData?.home?.heading_2}
         subheading={homeData?.home?.sub_heading_2}
-      />
+      /> */}
       <UpcomingProduct data={homeData?.recently_added} />
       <ContactUs
         heading={homeData?.home?.heading_3}

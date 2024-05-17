@@ -10,7 +10,7 @@ const Layout = (props) => {
   return (
     <>
       <TopHeader onPageClick={props?.onPageClick} />
-      <Header onPageClick={props?.onPageClick} />
+      {/* <Header onPageClick={props?.onPageClick} /> */}
       <div className="children-components">{props.children}</div>
       {!(
         pathname === "/login" ||

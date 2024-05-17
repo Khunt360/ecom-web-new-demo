@@ -13,9 +13,9 @@ function Footer() {
   const d = new Date();
   let year = d.getFullYear();
 
-  // useEffect(() => {
-  //   getFooter();
-  // }, [getFooter]);
+  useEffect(() => {
+    getFooter();
+  }, [getFooter]);
 
   //hydration error handle hack
   const [isMounted, setIsMounted] = useState(false);

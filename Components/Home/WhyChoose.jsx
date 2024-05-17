@@ -6,9 +6,9 @@ import { useEffect } from "react";
 const WhyChoose = () => {
   const { footerData, getFooter } = useCommonApi();
 
-  useEffect(() => {
-    getFooter();
-  }, [getFooter]);
+  // useEffect(() => {
+  //   getFooter();
+  // }, [getFooter]);
 
   let phone1;
 

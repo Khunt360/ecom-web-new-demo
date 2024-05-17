@@ -53,33 +53,3 @@ function Home({ homeData, bestSellingData }) {
 }
 
 export default Home;
-
-export async function getServerSideProps() {
-  try {
-    // Fetch home data and best-selling data concurrently using Promise.all
-    const [homeResponse, bestSellingResponse] = await Promise.all([
-      axios.post("get-home-content"),
-      axios.get("best-sellers"),
-    ]);
-
-    // Extract data from the responses
-    const homeData = homeResponse.data.result;
-    const bestSellingData = bestSellingResponse.data.best_sellers;
-
-    // Return the data as props
-    return {
-      props: {
-        homeData,
-        bestSellingData,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        homeData: null, // Return null if there's an error
-        bestSellingData: null, // Return null if there's an error
-      },
-    };
-  }
-}

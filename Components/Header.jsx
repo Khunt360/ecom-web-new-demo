@@ -216,7 +216,7 @@ const Header = () => {
         unoptimized 
                   src="/images/down-menu-arrow.webp"
                   alt=""
-                  width={15} height={15} 
+                  width={12} height={6} 
                 />
               </a>
               <div className="category-list">
@@ -292,7 +292,7 @@ const Header = () => {
                 >
                   <Image
         loading='lazy'
-        unoptimized  src="/images/user.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/user.webp" alt="" width={24} height={24} />
                 </Link>
               </li>
             )}
@@ -304,14 +304,14 @@ const Header = () => {
               >
                 <Image
         loading='lazy'
-        unoptimized  src="/images/search.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/search.webp" alt="" width={24} height={24} />
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link countBox" href="/my-favorites" onClick={handleNavLinkClick}>
                 <Image
         loading='lazy'
-        unoptimized  src="/images/heart.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/heart.webp" alt="" width={24} height={24} />
                 <div className="count">{count?.product_count || 0}</div>
               </Link>
             </li>
@@ -326,7 +326,7 @@ const Header = () => {
               >
                 <Image
         loading='lazy'
-        unoptimized  src="/images/shopping-cart.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/shopping-cart.webp" alt="" width={24} height={24} />
                 <div className="count">{count?.cart_count || 0}</div>
               </Link>
             </li>
@@ -345,7 +345,7 @@ const Header = () => {
             <Link className="navbar-brand" href="/">
               <Image
         loading='lazy'
-        unoptimized  src="/images/logo.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/logo.webp" alt="" width={24} height={24} />
             </Link>
 
             <div className="main-menu">
@@ -358,7 +358,7 @@ const Header = () => {
                   >
                     <Image
         loading='lazy'
-        unoptimized  src="/images/search.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/search.webp" alt="" width={24} height={24} />
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -369,7 +369,7 @@ const Header = () => {
                   >
                     <Image
         loading='lazy'
-        unoptimized  src="/images/heart.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/heart.webp" alt="" width={24} height={24} />
                     <div className="count">{count?.product_count || 0}</div>
                   </Link>
                 </li>
@@ -384,7 +384,7 @@ const Header = () => {
                   >
                     <Image
         loading='lazy'
-        unoptimized  src="/images/shopping-cart.webp" alt="" width={15} height={15} />
+        unoptimized  src="/images/shopping-cart.webp" alt="" width={24} height={24} />
                     <div className="count">{count?.cart_count || 0}</div>
                   </Link>
                 </li>

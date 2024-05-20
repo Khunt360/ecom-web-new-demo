@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const webpack = require("webpack");
 const nextConfig = {
+  images: {
+    unoptimized: true,
+  },
   output: "export",
   reactStrictMode: true,
   webpack: (config, { isServer }) => {

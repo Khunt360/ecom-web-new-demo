@@ -8,7 +8,7 @@ const FounderInfo = ({ heading, subheading, sign, name }) => {
         <div className="line-img">
           <Image
         loading='lazy'
-        unoptimized  src="/images/night-wear-line.webp" alt="background" width={15} height={15}/>
+        unoptimized layout="responsive" src="/images/night-wear-line.webp" alt="background" width={15} height={15}/>
         </div>
         <div className="container  founderInfo-content">
           <div className="row">
@@ -20,7 +20,7 @@ const FounderInfo = ({ heading, subheading, sign, name }) => {
               <div className="sign">
                 {sign && <Image
         loading='lazy'
-        unoptimized  src={BASE_URL + sign} alt="founder signature" width={15} height={15} />}
+        unoptimized  src={BASE_URL + sign} alt="founder signature" width={200} height={100} />}
                 <span>
                   {name}
                   <br />

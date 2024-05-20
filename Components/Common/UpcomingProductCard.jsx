@@ -22,6 +22,8 @@ const UpcomingProductCard = ({ item,addRemoveToWishlist, isWishlist, slNo }) => 
                   : "/images/saree1.webp"
               }
               alt="product"
+              layout="responsive"
+              width={500} height={500}
             />}
           </Link>
           <Link href={`/product-details/${item?.slug}`}>

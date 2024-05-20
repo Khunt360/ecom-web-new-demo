@@ -10,7 +10,9 @@ function Banner({ banner, imgUrl }) {
         loading='lazy'
         unoptimized 
           src={BASE_URL + imgUrl + banner?.image}
-          width={15} height={15} 
+          layout="responsive"
+          width={1200} // Placeholder width for aspect ratio calculation
+          height={900} // Placeholder height for aspect ratio calculation
           alt="banner"
           className="banner-homepage"
           

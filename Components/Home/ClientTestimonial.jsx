@@ -22,11 +22,12 @@ const ClientTestimonial = ({ image, testimonial }) => {
       <div className="row">
         <div className="col-lg-6 testimonialLeftPart">
           {image && <Image
-        loading='lazy'
-        unoptimized 
+            loading='lazy'
+            unoptimized
+            layout="responsive"
             src={BASE_URL + image}
             alt="testimonial"
-            width={15} height={15} 
+            width={15} height={15}
           />}
         </div>
         <div className="col-lg-6 testimonialRightPart">
@@ -40,9 +41,7 @@ const ClientTestimonial = ({ image, testimonial }) => {
                 {testimonial?.map((item, index) => {
                   return (
                     <div className="item" key={index}>
-                      <Image
-        loading='lazy'
-        unoptimized  src="/images/logo.webp" alt="" width={15} height={15} />
+                      <img src="/images/logo.webp" alt=""  />
                       <h1>Client Testimonials</h1>
                       <p>“{item?.description}”</p>
                       <h6>

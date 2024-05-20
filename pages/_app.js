@@ -14,12 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
-var $ = require("jquery");
-if (typeof window !== "undefined") {
-  window.$ = window.jQuery = require("jquery");
-  window.bootstrap = require("bootstrap");
-  window.popper = require("popper.js");
-}
+// var $ = require("jquery");
+// if (typeof window !== "undefined") {
+//   window.$ = window.jQuery = require("jquery");
+//   window.bootstrap = require("bootstrap");
+//   window.popper = require("popper.js");
+// }
 const ProgressBar = dynamic(() => import("@/Components/ProgressBar"), {
   ssr: false,
 });

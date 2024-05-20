@@ -11,8 +11,19 @@ import axios from "@/APiSetUp/axios";
 // import { useEffect } from "react";
 import SEOPart from "@/Components/SEOPart";
 import { SeoData } from "@/SEOData/SeoData";
+import { useEffect, useState } from "react";
 
-function Home({ homeData, bestSellingData }) {
+function Home() {
+  const [homeData, setHomeData] = useState([])
+  const [bestSellingData, setBestSellingData] = useState([])
+
+  // useEffect(() => {
+  //   (async () => {
+  //     axios.post("get-home-content").then(res => setHomeData(res?.data?.result))
+  //     axios.post("best-sellers").then(res => setBestSellingData(res?.data?.best_sellers))
+  //   })();
+  // }, []); 
+
 
   return (
     <>
@@ -53,33 +64,3 @@ function Home({ homeData, bestSellingData }) {
 }
 
 export default Home;
-
-export async function getServerSideProps() {
-  try {
-    // Fetch home data and best-selling data concurrently using Promise.all
-    const [homeResponse, bestSellingResponse] = await Promise.all([
-      axios.post("get-home-content"),
-      axios.get("best-sellers"),
-    ]);
-
-    // Extract data from the responses
-    const homeData = homeResponse.data.result;
-    const bestSellingData = bestSellingResponse.data.best_sellers;
-
-    // Return the data as props
-    return {
-      props: {
-        homeData,
-        bestSellingData,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        homeData: null, // Return null if there's an error
-        bestSellingData: null, // Return null if there's an error
-      },
-    };
-  }
-}

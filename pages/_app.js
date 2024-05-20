@@ -1,20 +1,18 @@
-
+import "@/styles/bootstrap.css";
+import "@/styles/style.css";
+import "@/styles/responsive.css";
+import "@/styles/font-awesome.css";
+import "@/styles/owl-carousel.min.css";
+import "@/styles/owl.theme.default.min.css";
 import Layout from "@/Components/Layout";
 import { Provider } from "react-redux";
 import store from "@/store";
 import Loader from "@/Components/Loader";
 import { Bounce, ToastContainer } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
-import "react-toastify/dist/ReactToastify.css";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
-var $ = require("jquery");
-if (typeof window !== "undefined") {
-  window.$ = window.jQuery = require("jquery");
-  window.bootstrap = require("bootstrap");
-  window.popper = require("popper.js");
-}
 const ProgressBar = dynamic(() => import("@/Components/ProgressBar"), {
   ssr: false,
 });

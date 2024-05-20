@@ -19,7 +19,7 @@ function Home() {
 
   useEffect(() => {
     (async () => {
-      // axios.post("get-home-content").then(res => setHomeData(res?.data?.result))
+      axios.post("get-home-content").then(res => setHomeData(res?.data?.result))
       // axios.post("best-sellers").then(res => setBestSellingData(res?.data?.best_sellers))
     })();
   }, []); 

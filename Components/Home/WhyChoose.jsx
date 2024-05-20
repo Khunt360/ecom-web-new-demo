@@ -2,6 +2,7 @@ import { BASE_URL } from "@/APiSetUp/axios";
 import Link from "next/link";
 import useCommonApi from "@/hooks/useCommonApi";
 import { useEffect } from "react";
+import Image from "next/image";
 
 const WhyChoose = () => {
   const { footerData, getFooter } = useCommonApi();
@@ -40,15 +41,21 @@ console.log("footerData",footerData);
         <p>Why Choose us</p>
         <div className="chs-box">
           <div className="chs-item">
-            <img src={BASE_URL + footerData?.image1} alt="item1" />
+           {footerData?.image1 && <Image
+        loading='lazy'
+        unoptimized  src={BASE_URL + footerData?.image1} alt="item1" width={15} height={15} />}
             <p>{footerData?.why_buy_point3}</p>
           </div>
           <div className="chs-item">
-            <img src={BASE_URL + footerData?.image2} alt="item1" />
+          {footerData?.image2 &&  <Image
+        loading='lazy'
+        unoptimized  src={BASE_URL + footerData?.image2} alt="item1" width={15} height={15} />}
             <p>{footerData?.why_buy_point4}</p>
           </div>
           <div className="chs-item">
-            <img src={BASE_URL + footerData?.image3} alt="item1" />
+           {footerData?.image3 && <Image
+        loading='lazy'
+        unoptimized  src={BASE_URL + footerData?.image3} alt="item1" width={15} height={15} />}
             <p>{footerData?.why_buy_point5}</p>
           </div>
         </div>

@@ -1,10 +1,13 @@
 import { BASE_URL } from "@/APiSetUp/axios";
+import Image from "next/image";
 
 const OrderDetailsBox = ({ data }) => {
   return (
     <div className="order-box">
       <div className="order-img">
-        <img
+        <Image
+        loading='lazy'
+        unoptimized 
           src={
             BASE_URL +
             "/" +

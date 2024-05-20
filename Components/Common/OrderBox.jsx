@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { toggleLoader } from "@/redux/userSlice";
 import { toast } from "react-toastify";
 import axios from "@/APiSetUp/axios";
+import Image from "next/image";
 
 const OrderBox = ({ data, setOrderData }) => {
   const dispatch = useDispatch();
@@ -41,7 +42,10 @@ const OrderBox = ({ data, setOrderData }) => {
   return (
     <div className="order-box">
       <div className="order-img">
-        <img
+        {data?.get_order_details?.[0]?.get_product_details
+              ?.get_all_image?.[0]?.image && <Image
+        loading='lazy'
+        unoptimized 
           src={
             BASE_URL +
             "/" +
@@ -49,7 +53,7 @@ const OrderBox = ({ data, setOrderData }) => {
               ?.get_all_image?.[0]?.image
           }
           alt="order"
-        />
+        />}
       </div>
       <div className="order-det">
         <div className="order-det-top">

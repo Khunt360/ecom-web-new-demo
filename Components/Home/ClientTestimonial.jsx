@@ -2,6 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { BASE_URL } from "@/APiSetUp/axios";
+import Image from "next/image";
 
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
   ssr: false,
@@ -20,12 +21,13 @@ const ClientTestimonial = ({ image, testimonial }) => {
     <section className="clientTestimonial">
       <div className="row">
         <div className="col-lg-6 testimonialLeftPart">
-          <img
+          {image && <Image
+        loading='lazy'
+        unoptimized 
             src={BASE_URL + image}
             alt="testimonial"
-            height={"100%"}
-            width={"100%"}
-          />
+            width={15} height={15} 
+          />}
         </div>
         <div className="col-lg-6 testimonialRightPart">
           <div className="box"></div>
@@ -38,7 +40,9 @@ const ClientTestimonial = ({ image, testimonial }) => {
                 {testimonial?.map((item, index) => {
                   return (
                     <div className="item" key={index}>
-                      <img src="/images/logo.webp" alt="" />
+                      <Image
+        loading='lazy'
+        unoptimized  src="/images/logo.webp" alt="" width={15} height={15} />
                       <h1>Client Testimonials</h1>
                       <p>“{item?.description}”</p>
                       <h6>

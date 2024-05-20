@@ -2,13 +2,16 @@ import { BASE_URL } from "@/APiSetUp/axios";
 import { AiOutlineDelete } from "react-icons/ai";
 import ProductCounter from "./ProductCounter";
 import useCommonApi from "@/hooks/useCommonApi";
+import Image from "next/image";
 
 const CartItemBox = ({ data, isDelete, isQtyFixed, removeItem }) => {
   return (
     <>
       <div className="cart-box">
         <div className="cart-img">
-          <img src={data?.get_product_details?.get_all_image?.[0]?.image ? BASE_URL + "/" + data?.get_product_details?.get_all_image?.[0]?.image : "/images/pic1.webp"} alt="order" />
+          {data?.get_product_details?.get_all_image?.[0]?.image && <Image
+        loading='lazy'
+        unoptimized  src={data?.get_product_details?.get_all_image?.[0]?.image ? BASE_URL + "/" + data?.get_product_details?.get_all_image?.[0]?.image : "/images/pic1.webp"} alt="order" width={15} height={15} />}
         </div>
         <div className="order-det">
           <div className="det-top-left">

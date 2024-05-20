@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useCommonApi from "@/hooks/useCommonApi";
+import Image from "next/image";
 
 function Footer() {
   const { auth_token } = useSelector((state) => state.user);
@@ -56,7 +57,9 @@ function Footer() {
               <div className="row">
                 <div className="fot-main-content">
                   <div className="fot-logo-cont">
-                    <img src="/images/fot-logo.webp" alt="logo" />
+                    <Image
+        loading='lazy'
+        unoptimized  src="/images/fot-logo.webp" alt="logo" width={15} height={15}/>
                     <p>
                       Shop our beautiful sarees: luxurious silks and vibrant
                       handlooms. Timeless elegance awaits.
@@ -174,7 +177,9 @@ function Footer() {
       )}
       <div className="copy">
         <div className="copy-img">
-          <img src="/images/fot-pay.webp" alt="logo" />
+          <Image
+        loading='lazy'
+        unoptimized  src="/images/fot-pay.webp" alt="logo" width={15} height={15}/>
         </div>
         <div className="copy-lft">
           <p>Copyright © {year} ecommerce.com | All Rights Reserved</p>

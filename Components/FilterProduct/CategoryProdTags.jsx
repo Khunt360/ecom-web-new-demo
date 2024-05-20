@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useRef } from "react";
 
 const CategoryProdTags = ({ tags,selectedTag,_selectedTag }) => {
@@ -10,7 +11,9 @@ const CategoryProdTags = ({ tags,selectedTag,_selectedTag }) => {
   return (
     <div className="category-prod-tags-container ">
       <button onClick={() => scroll(-100)} className="scroll-btn prev">
-        <img src="/images/svg/chevron.svg" alt="select" />
+        <Image
+        loading='lazy'
+        unoptimized  src="/images/svg/chevron.svg" alt="select" />
       </button>
       <div className="tags-wrapper" ref={scrollContainerRef}>
         {tags.map((tag, index) => (
@@ -20,7 +23,9 @@ const CategoryProdTags = ({ tags,selectedTag,_selectedTag }) => {
         ))}
       </div>
       <button onClick={() => scroll(100)} className="scroll-btn next">
-        <img src="/images/svg/chevron.svg" alt="select" />
+        <Image
+        loading='lazy'
+        unoptimized  src="/images/svg/chevron.svg" alt="select" />
       </button>
     </div>
   );

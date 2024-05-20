@@ -1,9 +1,12 @@
 import { BASE_URL } from "@/APiSetUp/axios";
+import Image from "next/image";
 
 const CommonBanner = ({ img, imgUrl, title, desc, link, linkTitle }) => {
   return (
     <div className="comm-banner">
-      <img src={BASE_URL+imgUrl+img} alt="contact" />
+      <Image
+        loading='lazy'
+        unoptimized  src={BASE_URL+imgUrl+img} alt="contact" />
       <div className="container">
         <div className="ban-text">
           <h1>{title}</h1>

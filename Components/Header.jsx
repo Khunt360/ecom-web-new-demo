@@ -11,6 +11,7 @@ import OrderSummery from "./Common/OrderSummery";
 import useCommonApi from "@/hooks/useCommonApi";
 import { FaAngleRight } from "react-icons/fa6";
 import NodataFound from "./NodataFound";
+import Image from "next/image";
 
 const Header = () => {
   let navbarRef = useRef();
@@ -130,7 +131,9 @@ const Header = () => {
       <div className="after_login_user_dropdown">
         <a className="user_llk" onClick={toggleMenu}>
           <span>
-            <img
+            <Image
+        loading='lazy'
+        unoptimized 
               src={
                 user?.profile_image && user?.image_path
                   ? user?.image_path + "/" + user?.profile_image
@@ -207,7 +210,9 @@ const Header = () => {
             }}>
               <a className="nav-link">
                 Browse Categories &nbsp;
-                <img
+                <Image
+        loading='lazy'
+        unoptimized 
                   src="/images/down-menu-arrow.webp"
                   alt=""
                   height={"auto"}
@@ -285,7 +290,9 @@ const Header = () => {
                   href="/login"
                   onClick={handleNavLinkClick}
                 >
-                  <img src="/images/user.webp" alt="" />
+                  <Image
+        loading='lazy'
+        unoptimized  src="/images/user.webp" alt="" />
                 </Link>
               </li>
             )}
@@ -295,12 +302,16 @@ const Header = () => {
                 href="/search-product"
                 onClick={handleNavLinkClick}
               >
-                <img src="/images/search.webp" alt="" />
+                <Image
+        loading='lazy'
+        unoptimized  src="/images/search.webp" alt="" />
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link countBox" href="/my-favorites" onClick={handleNavLinkClick}>
-                <img src="/images/heart.webp" alt="" />
+                <Image
+        loading='lazy'
+        unoptimized  src="/images/heart.webp" alt="" />
                 <div className="count">{count?.product_count || 0}</div>
               </Link>
             </li>
@@ -313,7 +324,9 @@ const Header = () => {
                 aria-controls="offcanvasRight"
                 onClick={handleNavLinkClick}
               >
-                <img src="/images/shopping-cart.webp" alt="" />
+                <Image
+        loading='lazy'
+        unoptimized  src="/images/shopping-cart.webp" alt="" />
                 <div className="count">{count?.cart_count || 0}</div>
               </Link>
             </li>
@@ -330,7 +343,9 @@ const Header = () => {
         <div className="container container-new headerContainer">
           <nav className="navbar navbar-expand-lg">
             <Link className="navbar-brand" href="/">
-              <img src="/images/logo.webp" alt="" />
+              <Image
+        loading='lazy'
+        unoptimized  src="/images/logo.webp" alt="" />
             </Link>
 
             <div className="main-menu">
@@ -341,7 +356,9 @@ const Header = () => {
                     href="/search-product"
                     onClick={handleNavLinkClick}
                   >
-                    <img src="/images/search.webp" alt="" />
+                    <Image
+        loading='lazy'
+        unoptimized  src="/images/search.webp" alt="" />
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -350,7 +367,9 @@ const Header = () => {
                     href="/my-favorites"
                     onClick={handleNavLinkClick}
                   >
-                    <img src="/images/heart.webp" alt="" />
+                    <Image
+        loading='lazy'
+        unoptimized  src="/images/heart.webp" alt="" />
                     <div className="count">{count?.product_count || 0}</div>
                   </Link>
                 </li>
@@ -363,7 +382,9 @@ const Header = () => {
                     data-bs-target="#offcanvasRight"
                     aria-controls="offcanvasRight"
                   >
-                    <img src="/images/shopping-cart.webp" alt="" />
+                    <Image
+        loading='lazy'
+        unoptimized  src="/images/shopping-cart.webp" alt="" />
                     <div className="count">{count?.cart_count || 0}</div>
                   </Link>
                 </li>

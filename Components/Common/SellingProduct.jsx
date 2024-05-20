@@ -6,6 +6,7 @@ import { BASE_URL } from "@/APiSetUp/axios";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useCommonApi from "@/hooks/useCommonApi";
+import Image from "next/image";
 
 const SellingProductCard = ({ item }) => {
   const router = useRouter();
@@ -17,7 +18,9 @@ const SellingProductCard = ({ item }) => {
     <div className="sellingProductCard">
       <div className="productImg">
       <Link href={`/product-details/${item?.slug}`} className="pro-img-cont">
-        <img
+        <Image
+        loading='lazy'
+        unoptimized 
           src={
             item?.get_defult_image?.image
               ? BASE_URL + "/" + item?.get_defult_image?.image

@@ -6,6 +6,7 @@ import { BASE_URL } from "@/APiSetUp/axios";
 import {  useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import useCommonApi from "@/hooks/useCommonApi";
+import Image from "next/image";
 
 const ProductCart = ({ item,addRemoveToWishlist }) => {
   const router = useRouter();
@@ -18,7 +19,9 @@ const ProductCart = ({ item,addRemoveToWishlist }) => {
     <div className="filter-prod-cart">
       <Link href={`/product-details/${item?.slug}`} className="imageLink">
         <div>
-          <img src={item?.get_defult_image?.image ? BASE_URL + "/" + item?.get_defult_image?.image : "/images/saree1.webp"} width="100%" height="auto" alt="filter" />
+          <Image
+        loading='lazy'
+        unoptimized  src={item?.get_defult_image?.image ? BASE_URL + "/" + item?.get_defult_image?.image : "/images/saree1.webp"} width="100%" height="auto" alt="filter" />
         </div>
       </Link>
       <div className="prod-feature-icon">
@@ -38,7 +41,9 @@ const ProductCart = ({ item,addRemoveToWishlist }) => {
           <p>₹{item?.get_product_ind_price?.after_discount_price}</p>
         </div>
         <p className="continue-btn">Continue to buy</p>
-        <img
+        <Image
+        loading='lazy'
+        unoptimized 
           style={{ filter: "invert(1)", width: "6px", height: "auto" }}
           src="/images/right-arrow-white.webp"
           alt=""

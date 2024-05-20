@@ -1,16 +1,20 @@
 import { BASE_URL } from "@/APiSetUp/axios";
+import Image from "next/image";
 import Link from "next/link";
 
 function Banner({ banner, imgUrl }) {
   return (
     <div>
       <section className="banner">
-        <img
+        <Image
+        loading='lazy'
+        unoptimized 
           src={BASE_URL + imgUrl + banner?.image}
           width={"100%"}
           height={"auto"}
           alt="banner"
           className="banner-homepage"
+          
         />
 
         <div className="container-fluid">
@@ -22,7 +26,9 @@ function Banner({ banner, imgUrl }) {
               }}
             />
             <Link href="/search-product">
-              Shop Now <img src="/images/right-arrow-white.webp" alt="" />
+              Shop Now <Image
+        loading='lazy'
+        unoptimized  src="/images/right-arrow-white.webp" alt="" />
             </Link>
           </div>
         </div>

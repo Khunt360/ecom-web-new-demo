@@ -27,16 +27,16 @@ const Header = () => {
     await Promise.all([getCategoryList()]);
   }, [getCategoryList]);
 
-  // useEffect(() => {
-  //   fetchData()
-  //   if (user) {
-  //     getUserData();
-  //   }
-  //   if (router?.pathname !== "/login") {
-  //     getCartList();
-  //     getCount();
-  //   }
-  // }, []);
+  useEffect(() => {
+    fetchData()
+    if (user) {
+      getUserData();
+    }
+    if (router?.pathname !== "/login") {
+      getCartList();
+      getCount();
+    }
+  }, []);
 
   const handleNavLinkClick = () => {
     if (navbarRef.current && navbarRef.current.classList.contains("show")) {

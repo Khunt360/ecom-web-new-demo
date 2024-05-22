@@ -1,9 +1,8 @@
-import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import ButtonOutlined from "./ButtonOutlined";
 import Link from "next/link";
 import { BASE_URL } from "@/APiSetUp/axios";
-import Image from "next/image";
+import ImageComponent from "../NextComponent/ImageComponent";
 
 const UpcomingProductCard = ({ item,addRemoveToWishlist, isWishlist, slNo }) => {
   // const {addRemoveToWishlist} = useCommonApi();
@@ -13,18 +12,25 @@ const UpcomingProductCard = ({ item,addRemoveToWishlist, isWishlist, slNo }) => 
       <div className="productImg">
         <div className="image-prod-title-position">
           <Link href={`/product-details/${item?.slug}`} className="with-gradient">
-            {item?.get_defult_image?.image && <Image
-        loading='lazy'
-        unoptimized 
+            {/* <img
               src={
                 item?.get_defult_image?.image
                   ? BASE_URL + "/" + item?.get_defult_image?.image
                   : "/images/saree1.webp"
               }
               alt="product"
-              layout="responsive"
-              width={500} height={500}
-            />}
+            /> */}
+            <div className="up-prod-img">
+            <ImageComponent
+              src={
+                item?.get_defult_image?.image
+                  ? BASE_URL + "/" + item?.get_defult_image?.image
+                  : "/images/saree1.webp"
+              }
+              alt="product"
+              fill
+            />
+            </div>
           </Link>
           <Link href={`/product-details/${item?.slug}`}>
             <h4>{item?.title?.length > 26

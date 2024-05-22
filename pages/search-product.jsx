@@ -1,13 +1,9 @@
 import CategoryProdTags from "@/Components/FilterProduct/CategoryProdTags";
-// import ColorSelect from "@/Components/FilterProduct/ColorPlate";
-// import FilterAccordion from "@/Components/FilterProduct/FilterAccordion";
 import PriceProgressbar from "@/Components/FilterProduct/PriceProgressbar";
 import ProductCart from "@/Components/FilterProduct/ProductCart";
 import WhyChoose from "@/Components/Home/WhyChoose";
-// import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FiFilter } from "react-icons/fi";
-import React, { useCallback, useEffect, useState } from "react";
-import Head from "next/head";
+import { useEffect, useState } from "react";
 import useCommonApi from "@/hooks/useCommonApi";
 import { useDispatch } from "react-redux";
 import axios from "@/APiSetUp/axios";
@@ -16,141 +12,17 @@ import NodataFound from "@/Components/NodataFound";
 import { useRouter } from "next/router";
 import SEOPart from "@/Components/SEOPart";
 import { SeoData } from "@/SEOData/SeoData";
+import Layout from "@/Components/Layout";
+import { fetchCategoryList, fetchFooter } from "@/hooks/useCommonData";
 
-// const data = [
-//   {
-//     image: "/images/saree1.webp",
-//     title: "Kanjivaram Saree In Red Shades",
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting simply product description will be show here",
-//     subPrice: "Rs. 15,100.00",
-//     price: "Rs. 12,500.00",
-//   },
-//   {
-//     image: "/images/saree2.webp",
-//     title: "Banarasi Saree In White Shades",
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting simply product description will be show here",
-//     subPrice: "Rs. 22,500.00",
-//     price: "Rs. 19,100.00",
-//   },
-//   {
-//     image: "/images/saree3.webp",
-//     title: "Red Kanjivaram Saree ",
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting simply product description will be show here",
-//     subPrice: "Rs. 15,100.00",
-//     price: "Rs. 12,500.00",
-//   },
-//   {
-//     image: "/images/saree1.webp",
-//     title: "Kanjivaram Saree In Red Shades",
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting simply product description will be show here",
-//     subPrice: "Rs. 15,100.00",
-//     price: "Rs. 12,500.00",
-//   },
-//   {
-//     image: "/images/saree2.webp",
-//     title: "Banarasi Saree In White Shades",
-//     description:
-//       "Lorem Ipsum is simply dummy text of the printing and typesetting simply product description will be show here",
-//     subPrice: "Rs. 22,500.00",
-//     price: "Rs. 19,100.00",
-//   },
-// ];
-// const occasionData = [
-//   {
-//     title: "Wedding",
-//     stock: 400,
-//   },
-//   {
-//     title: "Any Occasions",
-//     stock: 1200,
-//   },
-//   {
-//     title: "Casual",
-//     stock: 500,
-//   },
-//   {
-//     title: "Ceremonial",
-//   },
-//   {
-//     title: "Party",
-//   },
-// ];
-// const fabricData = [
-//   {
-//     title: "Art Silk",
-//     stock: 1200,
-//   },
-//   {
-//     title: "Soft Net",
-//     stock: 1200,
-//   },
-//   {
-//     title: "Raw Silk",
-//     stock: 500,
-//   },
-//   {
-//     title: "Georgette",
-//   },
-// ];
-// const printsAndPatternsData = [
-//   {
-//     title: "Floral",
-//   },
-//   {
-//     title: "Patola",
-//   },
-//   {
-//     title: "Bandhani",
-//   },
-// ];
-// const categoriesList = [
-//   {
-//     name: "Wedding",
-//     value: "1",
-//   },
-//   {
-//     name: "Any Occasions",
-//     value: "2",
-//   },
-// ];
-// const categoriesProdTags = [
-//   "SAREE ",
-//   "ART SILK SAREES ",
-//   "PASTEL SAREES ",
-//   "HEAVY EMBROIDERY SAREES ",
-//   "SAREES UNDER 5000 ",
-//   "COCKTAIL ",
-//   "RECEPTION ",
-//   "BUY 2 GET 1 FREE ",
-// ];
+const SearctProduct = ({ categoryList, footerData }) => {
+  const { subcategoryList, addRemoveToWishlist, getSubcategoryList } =
+    useCommonApi();
 
-const SearctProduct = () => {
-  const {
-    categoryList,
-    subcategoryList,
-    addRemoveToWishlist,
-    getCategoryList,
-    getSubcategoryList,
-    // getWishlist
-  } = useCommonApi();
   const dispatch = useDispatch();
   const router = useRouter();
   const { categoryId } = router?.query;
-  // const { user } = useSelector((state) => state.user);
-  // const [selectedColor, setSelectedColor] = useState(null);
   const [isFilterShow, setIsFilterShow] = useState(false);
-  // const colors = [
-  //   "#C61916",
-  //   "#FF7A2F",
-  //   "#2664B3",
-  //   "#FFFFFF",
-  //   "#7C7C8A",
-  //   "#000000",
-  // ];
   const [isDesktopView, setIsDesktopView] = useState(false);
   const [filterData, setFilterData] = useState(null);
   const [reload, setReload] = useState(false);
@@ -160,16 +32,9 @@ const SearctProduct = () => {
   const [data, setData] = useState([]);
   const [allResOfList, setAllResOfList] = useState({});
 
-  // const handleColorSelect = (color) => {
-  //   setSelectedColor(color);
-  // };
   const handleFilterBtn = () => {
     setIsFilterShow(!isFilterShow);
   };
-
-  const fetchData = useCallback(async () => {
-    await Promise.all([getCategoryList()]);
-  }, [getCategoryList]);
 
   const _getProduct = () => {
     const body = {
@@ -219,7 +84,6 @@ const SearctProduct = () => {
   }, [filterData]);
 
   useEffect(() => {
-    fetchData();
     if (typeof window !== "undefined") {
       setIsDesktopView(window.innerWidth >= 991);
       const handleResize = () => {
@@ -260,86 +124,12 @@ const SearctProduct = () => {
   return (
     <>
       <SEOPart data={SeoData?.search} />
-      <div className="search-prod-bg">
-        <div className="container container-new">
-          <div className="search-prod-main">
-            <div className="row">
-              {isDesktopView && (
-                <Filter
-                  _getProduct={_getProduct}
-                  categoryList={categoryList}
-                  setFilterData={setFilterData}
-                  filterData={filterData}
-                  setRangeValue={setRangeValue}
-                  maxValue={maxValue}
-                  rangeValue={rangeValue}
-                  minValue={minValue}
-                  isDesktopView={isDesktopView}
-                  isFilterShow={isFilterShow}
-                />
-              )}
-              <div
-                className={`col-xs-12 col-lg-${
-                  isFilterShow || isDesktopView ? "9" : "12"
-                } col-xl-9 filter-products`}
-              >
-                <div className="filter-description">
-                  <div className="filter-pro-des">
-                    <div>
-                      <h2>Explore Our Exquisite Saree Collections</h2>
-                      <span className="filter-total-items">
-                        ({allResOfList?.product_count} items)
-                      </span>
-                    </div>
-                    <p>
-                      Sarees for women were once a traditional way of life.
-                      Today, it is a fashion statement. No longer seen as
-                      something only mothers and grandmothers wear, today, the
-                      saree is the ultimate in occasion ethnic wear...
-                    </p>
-                  </div>
-
-                  <div className="priceDropMain">
-                    <div className="">
-                      <h4 className="search-filter-title">SORT BY:</h4>
-                      <div
-                        className="cont-frm-box position-relative"
-                        style={{ width: "220px" }}
-                      >
-                        <form className="categories-selector">
-                          <select
-                            value={filterData?.sort_by}
-                            name="sort_by"
-                            onChange={(e) => {
-                              setFilterData({
-                                ...filterData,
-                                ["sort_by"]: e?.target?.value,
-                              });
-                            }}
-                          >
-                            <option value="n">New</option>
-                            <option value="htl">Price high to low</option>
-                            <option value="lth">Price low to high</option>
-                            <option value="atz">A - Z</option>
-                            <option value="zta">Z - A</option>
-                          </select>
-                          <span className="input-group-addon">
-                            <img src="/images/select.webp" alt="select" />
-                          </span>
-                        </form>
-                      </div>
-                    </div>
-                    <div className="d-flex justify-content-end align-items-center">
-                      <button
-                        className="fastbuy-btn mt-4 search-prod-btn"
-                        onClick={() => handleFilterBtn()}
-                      >
-                        <FiFilter />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                {!isDesktopView && (
+      <Layout categoryList={categoryList} footerData={footerData}>
+        <div className="search-prod-bg">
+          <div className="container container-new">
+            <div className="search-prod-main">
+              <div className="row">
+                {isDesktopView && (
                   <Filter
                     _getProduct={_getProduct}
                     categoryList={categoryList}
@@ -353,47 +143,123 @@ const SearctProduct = () => {
                     isFilterShow={isFilterShow}
                   />
                 )}
-                <div className="filter-prod-cart-container">
-                  {filterData?.selectedCategory &&
-                    subcategoryList?.length > 0 && (
-                      <CategoryProdTags
-                        _selectedTag={(tag) => {
-                          setFilterData({
-                            ...filterData,
-                            selectedSubCategory: subcategoryList?.find(
-                              (ele) => ele?.name === tag
-                            ),
-                          });
-                        }}
-                        tags={subcategoryList?.map((ele) => ele?.name)}
-                        selectedTag={filterData?.selectedSubCategory?.name}
-                      />
-                    )}
-                  <div className="row mt-2 mt-lg-0">
-                    {data?.length > 0 ? (
-                      data?.map((item, i) => {
-                        return (
-                          <div className="col-6 col-lg-4" key={i}>
-                            <ProductCart
-                              item={item}
-                              addRemoveToWishlist={addRemoveToWishlist}
-                            />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div style={{ background: "#fff" }}>
-                        <NodataFound msg="No search result found" />
+                <div
+                  className={`col-xs-12 col-lg-${
+                    isFilterShow || isDesktopView ? "9" : "12"
+                  } col-xl-9 filter-products`}
+                >
+                  <div className="filter-description">
+                    <div className="filter-pro-des">
+                      <div>
+                        <h2>Explore Our Exquisite Saree Collections</h2>
+                        <span className="filter-total-items">
+                          ({allResOfList?.product_count} items)
+                        </span>
                       </div>
-                    )}
+                      <p>
+                        Sarees for women were once a traditional way of life.
+                        Today, it is a fashion statement. No longer seen as
+                        something only mothers and grandmothers wear, today, the
+                        saree is the ultimate in occasion ethnic wear...
+                      </p>
+                    </div>
+
+                    <div className="priceDropMain">
+                      <div className="">
+                        <h4 className="search-filter-title">SORT BY:</h4>
+                        <div
+                          className="cont-frm-box position-relative"
+                          style={{ width: "220px" }}
+                        >
+                          <form className="categories-selector">
+                            <select
+                              value={filterData?.sort_by}
+                              name="sort_by"
+                              onChange={(e) => {
+                                setFilterData({
+                                  ...filterData,
+                                  ["sort_by"]: e?.target?.value,
+                                });
+                              }}
+                            >
+                              <option value="n">New</option>
+                              <option value="htl">Price high to low</option>
+                              <option value="lth">Price low to high</option>
+                              <option value="atz">A - Z</option>
+                              <option value="zta">Z - A</option>
+                            </select>
+                            <span className="input-group-addon">
+                              <img src="/images/select.webp" alt="select" />
+                            </span>
+                          </form>
+                        </div>
+                      </div>
+                      <div className="d-flex justify-content-end align-items-center">
+                        <button
+                          className="fastbuy-btn mt-4 search-prod-btn"
+                          onClick={() => handleFilterBtn()}
+                        >
+                          <FiFilter />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  {!isDesktopView && (
+                    <Filter
+                      _getProduct={_getProduct}
+                      categoryList={categoryList}
+                      setFilterData={setFilterData}
+                      filterData={filterData}
+                      setRangeValue={setRangeValue}
+                      maxValue={maxValue}
+                      rangeValue={rangeValue}
+                      minValue={minValue}
+                      isDesktopView={isDesktopView}
+                      isFilterShow={isFilterShow}
+                    />
+                  )}
+                  <div className="filter-prod-cart-container">
+                    {filterData?.selectedCategory &&
+                      subcategoryList?.length > 0 && (
+                        <CategoryProdTags
+                          _selectedTag={(tag) => {
+                            setFilterData({
+                              ...filterData,
+                              selectedSubCategory: subcategoryList?.find(
+                                (ele) => ele?.name === tag
+                              ),
+                            });
+                          }}
+                          tags={subcategoryList?.map((ele) => ele?.name)}
+                          selectedTag={filterData?.selectedSubCategory?.name}
+                        />
+                      )}
+                    <div className="row mt-2 mt-lg-0">
+                      {data?.length > 0 ? (
+                        data?.map((item, i) => {
+                          return (
+                            <div className="col-6 col-lg-4" key={i}>
+                              <ProductCart
+                                item={item}
+                                addRemoveToWishlist={addRemoveToWishlist}
+                              />
+                            </div>
+                          );
+                        })
+                      ) : (
+                        <div style={{ background: "#fff" }}>
+                          <NodataFound msg="No search result found" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <WhyChoose />
+        <WhyChoose footerData={footerData} />
+      </Layout>
     </>
   );
 };
@@ -438,7 +304,7 @@ const Filter = ({
                   setRangeValue([minValue, maxValue]);
                 }}
               >
-                <img src="/images/close.webp" alt="" />
+                <img src="/images/close.webp" alt="close" />
                 <p className="text-decoration-underline mb-0 clear-link">
                   Clear all
                 </p>
@@ -477,20 +343,6 @@ const Filter = ({
               </form>
             </div>
           </div>
-          {/* <FilterAccordion
-                      accordionTitle={"Occasion"}
-                      data={occasionData}
-                      isMore
-                    />
-                    <FilterAccordion
-                      accordionTitle={"Fabric"}
-                      data={fabricData}
-                    />
-                    <FilterAccordion
-                      accordionTitle={"Prints AND Patterns"}
-                      data={printsAndPatternsData}
-                    />
-                    <ColorSelect colors={colors} onSelect={handleColorSelect} /> */}
           <h4 className="search-filter-title mt-2 mt-lg-5">Price</h4>
           <PriceProgressbar
             setRangeValue={setRangeValue}
@@ -510,3 +362,26 @@ const Filter = ({
     </div>
   );
 };
+
+export async function getStaticProps() {
+  try {
+    // Extract data from the responses
+    const response1 = await fetchCategoryList();
+    const categoryList = response1.categoryList;
+    const footerData = await fetchFooter();
+
+    // Return the data as props
+    return {
+      props: {
+        categoryList,
+        footerData,
+      },
+      revalidate: 86400, // Re-generate the page every 24 hours (86400 seconds)
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      notFound: true, // Return 404 page if there's an error
+    };
+  }
+}

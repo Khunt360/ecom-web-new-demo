@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 const ProgressBarExample = ({setRangeValue,rangeValue,minValue,maxValue}) => {

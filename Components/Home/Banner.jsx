@@ -1,23 +1,21 @@
 import { BASE_URL } from "@/APiSetUp/axios";
 import Image from "next/image";
 import Link from "next/link";
+import ImageComponent from "../NextComponent/ImageComponent";
 
 function Banner({ banner, imgUrl }) {
   return (
     <div>
       <section className="banner">
-      {banner?.image && <Image
-        loading='lazy'
-        unoptimized 
+      <div className="banner-cont">
+        <ImageComponent
           src={BASE_URL + imgUrl + banner?.image}
-          layout="responsive"
-          width={1200} // Placeholder width for aspect ratio calculation
-          height={900} // Placeholder height for aspect ratio calculation
+          fill={true}
           alt="banner"
-          className="banner-homepage"
-          
-        />}
-
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={true}
+        />
+        </div>
         <div className="container-fluid">
           <div className="banner-text">
             <h1>{banner?.heading}</h1>
@@ -27,9 +25,8 @@ function Banner({ banner, imgUrl }) {
               }}
             />
             <Link href="/search-product">
-              Shop Now <Image
-        loading='lazy'
-        unoptimized  src="/images/right-arrow-white.webp" alt="" width={15} height={15} />
+              Shop Now 
+              <Image src="/images/right-arrow-white.webp" alt="arrow" width={14} height={26}/>
             </Link>
           </div>
         </div>

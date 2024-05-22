@@ -1,4 +1,3 @@
-import React from "react";
 import FormTitleSubTitle from "../Common/FormTitleSubTitle";
 import dynamic from "next/dynamic";
 import SellingProductCard from "../Common/SellingProduct";
@@ -28,7 +27,6 @@ const SellingProduct = ({data}) => {
       },
     },
   };
-  console.log("datadata",data);
   return (
     <section className="sellingProduct">
       <div className="container-left">
@@ -38,7 +36,7 @@ const SellingProduct = ({data}) => {
             "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt "
           }
         />
-        {data?.length > 0 &&
+        {data?.length>0 &&
         <OwlCarousel
           className="owl-carousel owl-theme owl-product"
           {...owl_product}

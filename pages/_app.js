@@ -1,13 +1,17 @@
 import "@/styles/bootstrap.css";
 import "@/styles/style.css";
 import "@/styles/responsive.css";
-import "@/styles/font-awesome.css";
+import 'font-awesome/css/font-awesome.min.css';
 import "@/styles/owl-carousel.min.css";
 import "@/styles/owl.theme.default.min.css";
-import Layout from "@/Components/Layout";
+import {
+  manuale,
+  montserrat,
+  mulish,
+  urbanist,
+} from "@/styles/fonts";
 import { Provider } from "react-redux";
 import store from "@/store";
-import Loader from "@/Components/Loader";
 import { Bounce, ToastContainer } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,8 +21,6 @@ import { useEffect } from "react";
 var $ = require("jquery");
 if (typeof window !== "undefined") {
   window.$ = window.jQuery = require("jquery");
-  window.bootstrap = require("bootstrap");
-  window.popper = require("popper.js");
 }
 const ProgressBar = dynamic(() => import("@/Components/ProgressBar"), {
   ssr: false,
@@ -36,23 +38,24 @@ export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <ProgressBar />
-      <Loader />
-      <Layout>
+      <div
+        className={`${manuale.variable} ${montserrat.variable} ${mulish.variable} ${urbanist.variable}`}
+      >
         <Component {...pageProps} />
-        <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          transition={Bounce}
-        />
-      </Layout>
+      </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </Provider>
   );
 }

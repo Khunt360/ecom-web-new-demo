@@ -10,27 +10,27 @@ const useCommonApi = () => {
   const dispatch = useDispatch();
   const auth_token = Cookies.get("auth_token");
 
-  const [countryList, setCountryList] = useState([]);
+  // const [countryList, setCountryList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [profileImageUrl, setProfileImageUrl] = useState();
-  const [categoryList, setCategoryList] = useState([]);
+  // const [categoryList, setCategoryList] = useState([]);
   const [subcategoryList, setSubcategoryList] = useState([]);
   const [addressData, setAddressData] = useState([]);
-  const [footerData, setFooterData] = useState(null);
+  // const [footerData, setFooterData] = useState(null);
 
-  const getCountryList = useCallback(() => {
-    dispatch(toggleLoader());
-    axios
-      .post("country-list")
-      .then((res) => {
-        setCountryList([res?.data?.result?.country_list]);
-        setStateList(res?.data?.result?.state_list);
-        // Dispatch toggleLoader only once after the API call completes
-      })
-      .finally(() => {
-        dispatch(toggleLoader());
-      });
-  }, [dispatch]);
+  // const getCountryList = useCallback(() => {
+  //   dispatch(toggleLoader());
+  //   axios
+  //     .post("country-list")
+  //     .then((res) => {
+  //       setCountryList([res?.data?.result?.country_list]);
+  //       setStateList(res?.data?.result?.state_list);
+  //       // Dispatch toggleLoader only once after the API call completes
+  //     })
+  //     .finally(() => {
+  //       dispatch(toggleLoader());
+  //     });
+  // }, [dispatch]);
 
   const getUserData = useCallback(() => {
     dispatch(toggleLoader());
@@ -47,17 +47,17 @@ const useCommonApi = () => {
       });
   }, [dispatch]);
 
-  const getCategoryList = useCallback(() => {
-    dispatch(toggleLoader());
-    axios
-      .post("/category-list")
-      .then((res) => {
-        setCategoryList(res?.data?.result?.category_list);
-      })
-      .finally(() => {
-        dispatch(toggleLoader());
-      });
-  }, [dispatch]);
+  // const getCategoryList = useCallback(() => {
+  //   dispatch(toggleLoader());
+  //   axios
+  //     .post("/category-list")
+  //     .then((res) => {
+  //       setCategoryList(res?.data?.result?.category_list);
+  //     })
+  //     .finally(() => {
+  //       dispatch(toggleLoader());
+  //     });
+  // }, [dispatch]);
 
   const getSubcategoryList = useCallback(
     (id) => {
@@ -258,33 +258,20 @@ const useCommonApi = () => {
       });
   }, [dispatch]);
 
-  const getFooter = useCallback(() => {
-    dispatch(toggleLoader());
-    axios.post("footer-text").then((res) => {
-      if (res?.data?.result) {
-        setFooterData(res?.data?.result?.data);
-      } else if (res?.data?.error) {
-        toast.error(res?.data?.error?.meaning);
-        window.scrollTo(0, 0);
-      }
-    }).finally(() => {
-      dispatch(toggleLoader());
-    });
-  }, [dispatch]);
 
   return {
-    countryList,
+    // countryList,
     stateList,
     profileImageUrl,
-    categoryList,
+    // categoryList,
     subcategoryList,
     addressData,
-    footerData,
+    // footerData,
     setAddressData,
     setSubcategoryList,
-    getCountryList,
+    // getCountryList,
     getUserData,
-    getCategoryList,
+    // getCategoryList,
     getSubcategoryList,
     addToCart,
     getCartList,
@@ -293,7 +280,7 @@ const useCommonApi = () => {
     deleteFromCart,
     getAddressBook,
     removeToCart,
-    getFooter
+    // getFooter
   };
 };
 

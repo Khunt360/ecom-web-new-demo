@@ -11,9 +11,7 @@ const TradingCollections = ({ heading, subheading }) => {
           </h2>}
           <p>{subheading}</p>
           <Link href="/search-product">
-            Shop Now <Image
-        loading='lazy'
-        unoptimized  src="/images/right-arrow-white.webp" alt="" width={15} height={15} />
+            Shop Now <Image src="/images/right-arrow-white.webp" alt="arrow" width={14} height={26}/>
           </Link>
         </div>
       </div>

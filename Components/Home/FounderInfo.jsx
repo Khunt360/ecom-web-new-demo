@@ -1,14 +1,13 @@
 import { BASE_URL } from "@/APiSetUp/axios";
-import Image from "next/image";
+import ImageComponent from "../NextComponent/ImageComponent";
+
 
 const FounderInfo = ({ heading, subheading, sign, name }) => {
   return (
     <div>
       <section className="founderInfo">
         <div className="line-img">
-          <Image
-        loading='lazy'
-        unoptimized layout="responsive" src="/images/night-wear-line.webp" alt="background" width={15} height={15}/>
+          <img src="/images/night-wear-line.webp" alt="background" />
         </div>
         <div className="container  founderInfo-content">
           <div className="row">
@@ -18,9 +17,7 @@ const FounderInfo = ({ heading, subheading, sign, name }) => {
             <div className="col-lg-6 secondSec">
               <span>{subheading}</span>
               <div className="sign">
-                {sign && <Image
-        loading='lazy'
-        unoptimized  src={BASE_URL + sign} alt="founder signature" width={200} height={100} />}
+                <ImageComponent src={BASE_URL + sign} alt="founder signature" width={246} height={108}/>
                 <span>
                   {name}
                   <br />

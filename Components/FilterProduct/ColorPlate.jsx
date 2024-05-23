@@ -34,7 +34,7 @@ const ColorSelect = ({ colors, onSelect }) => {
                 size={18}
               />
 
-              // <img src="/images/check.webp" alt="" />
+              // <img src="/images/check.webp" alt="check" />
             )}
           </div>
         ))}

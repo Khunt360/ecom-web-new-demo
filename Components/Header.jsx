@@ -11,9 +11,11 @@ import OrderSummery from "./Common/OrderSummery";
 import useCommonApi from "@/hooks/useCommonApi";
 import { FaAngleRight } from "react-icons/fa6";
 import NodataFound from "./NodataFound";
+import ImageComponent from "./NextComponent/ImageComponent";
 import Image from "next/image";
+import TopHeader from "./TopHeader";
 
-const Header = () => {
+const Header = ({categoryList}) => {
   let navbarRef = useRef();
   const menuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,13 +25,20 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const router = useRouter();
   const dispatch = useDispatch();
-  const { getUserData, deleteFromCart, getCartList, getCount, getCategoryList, categoryList } = useCommonApi();
-  const fetchData = useCallback(async () => {
-    await Promise.all([getCategoryList()]);
-  }, [getCategoryList]);
+  const {
+    getUserData,
+    deleteFromCart,
+    getCartList,
+    getCount,
+    // getCategoryList,
+    // categoryList,
+  } = useCommonApi();
+  // const fetchData = useCallback(async () => {
+  //   await Promise.all([getCategoryList()]);
+  // }, [getCategoryList]);
 
   useEffect(() => {
-    fetchData()
+    // fetchData();
     if (user) {
       getUserData();
     }
@@ -69,7 +78,9 @@ const Header = () => {
       if (isConfirmed) {
         dispatch(logout());
         const currentRoute = router.pathname;
-        const isStaticRoute = staticPageRoute.some(route => currentRoute.startsWith(route));
+        const isStaticRoute = staticPageRoute.some((route) =>
+          currentRoute.startsWith(route)
+        );
         if (isStaticRoute) {
           router.push("/login");
         }
@@ -131,17 +142,23 @@ const Header = () => {
       <div className="after_login_user_dropdown">
         <a className="user_llk" onClick={toggleMenu}>
           <span>
-           {user?.profile_image && <Image
-           width={40} height={40} 
-        loading='lazy'
-        unoptimized 
-              src={
-                user?.profile_image && user?.image_path
-                  ? user?.image_path + "/" + user?.profile_image
-                  : "/images/default.webp"
-              }
-              alt="avtar"
-            />}
+            {user?.profile_image && user?.image_path ? (
+              <ImageComponent
+                src={user?.image_path + user?.profile_image}
+                alt="avtar"
+                className="avatar-cont"
+                width={30}
+                height={30}
+              />
+            ) : (
+              <Image
+                className="avatar-cont"
+                src="/images/default.webp"
+                alt="avtar"
+                width={30}
+                height={30}
+              />
+            )}
           </span>
         </a>
         <div
@@ -196,7 +213,7 @@ const Header = () => {
     openMenu,
     setOpenMenu,
     handleNavLinkClick,
-    router
+    router,
   }) => {
     return (
       <>
@@ -206,43 +223,48 @@ const Header = () => {
           ref={navbarRef}
         >
           <ul className="navbar-nav position-relative">
-            <li className="nav-item category-main" onMouseEnter={() => {
-              setOpenMenu(true);
-            }}>
+            <li
+              className="nav-item category-main"
+              onMouseEnter={() => {
+                setOpenMenu(true);
+              }}
+            >
               <a className="nav-link">
                 Browse Categories &nbsp;
                 <Image
-        loading='lazy'
-        unoptimized 
                   src="/images/down-menu-arrow.webp"
-                  alt=""
-                  width={12} height={6} 
+                  alt="arrow"
+                  width={10}
+                  height={6}
                 />
               </a>
               <div className="category-list">
-              <ul
-                className="browser-menu category-menu"
-                onMouseEnter={() => {
-                  setOpenMenu(true);
-                }}
-                onMouseLeave={() => {
-                  setOpenMenu(false);
-                }}
-              >
-                {categoryList?.map((ele, i) => {
-                  return (
-                    <li className="nav-item" key={i}>
-                      <Link
-                        className="nav-link category-subMenu"
-                        href={`/search-product?categoryId=${ele?.id}`}
-                        onClick={handleNavLinkClick}
-                      >
-                        {ele?.name?.split(" ")?.[0]} <span><FaAngleRight /></span>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
+                <ul
+                  className="browser-menu category-menu"
+                  onMouseEnter={() => {
+                    setOpenMenu(true);
+                  }}
+                  onMouseLeave={() => {
+                    setOpenMenu(false);
+                  }}
+                >
+                  {categoryList?.map((ele, i) => {
+                    return (
+                      <li className="nav-item" key={i}>
+                        <Link
+                          className="nav-link category-subMenu"
+                          href={`/search-product?categoryId=${ele?.id}`}
+                          onClick={handleNavLinkClick}
+                        >
+                          {ele?.name?.split(" ")?.[0]}{" "}
+                          <span>
+                            <FaAngleRight />
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </li>
             {/* {openMenu && ( */}
@@ -252,11 +274,15 @@ const Header = () => {
               if (i < 4) {
                 return (
                   <li className="nav-item" key={i}>
-                    <Link className="nav-link" href={`/search-product?categoryId=${ele?.id}`} onClick={handleNavLinkClick}>
+                    <Link
+                      className="nav-link"
+                      href={`/search-product?categoryId=${ele?.id}`}
+                      onClick={handleNavLinkClick}
+                    >
                       {ele?.name?.split(" ")?.[0]}
                     </Link>
                   </li>
-                )
+                );
               }
             })}
             {!user && (
@@ -290,9 +316,7 @@ const Header = () => {
                   href="/login"
                   onClick={handleNavLinkClick}
                 >
-                  <Image
-        loading='lazy'
-        unoptimized  src="/images/user.webp" alt="" width={24} height={24} />
+                  <Image width={24} height={24} src="/images/user.webp" alt="user" />
                 </Link>
               </li>
             )}
@@ -302,16 +326,16 @@ const Header = () => {
                 href="/search-product"
                 onClick={handleNavLinkClick}
               >
-                <Image
-        loading='lazy'
-        unoptimized  src="/images/search.webp" alt="" width={24} height={24} />
+                <Image width={24} height={24} src="/images/search.webp" alt="search" />
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link countBox" href="/my-favorites" onClick={handleNavLinkClick}>
-                <Image
-        loading='lazy'
-        unoptimized  src="/images/heart.webp" alt="" width={24} height={24} />
+              <Link
+                className="nav-link countBox"
+                href="/my-favorites"
+                onClick={handleNavLinkClick}
+              >
+                <Image width={24} height={24} src="/images/heart.webp" alt="heart" />
                 <div className="count">{count?.product_count || 0}</div>
               </Link>
             </li>
@@ -324,9 +348,7 @@ const Header = () => {
                 aria-controls="offcanvasRight"
                 onClick={handleNavLinkClick}
               >
-                <Image
-        loading='lazy'
-        unoptimized  src="/images/shopping-cart.webp" alt="" width={24} height={24} />
+                <Image width={24} height={24} src="/images/shopping-cart.webp" alt="cart" />
                 <div className="count">{count?.cart_count || 0}</div>
               </Link>
             </li>
@@ -339,13 +361,14 @@ const Header = () => {
 
   return (
     <div>
+    <TopHeader />
       <header className={scrollPosition > 0 ? "scrolled" : ""}>
         <div className="container container-new headerContainer">
           <nav className="navbar navbar-expand-lg">
             <Link className="navbar-brand" href="/">
-              <Image
-        loading='lazy'
-        unoptimized  src="/images/logo.webp" alt="" width={24} height={24} />
+            <div className="nav-logo-cont">
+              <Image src="/images/logo.webp" alt="logo" fill/>
+            </div>
             </Link>
 
             <div className="main-menu">
@@ -356,9 +379,7 @@ const Header = () => {
                     href="/search-product"
                     onClick={handleNavLinkClick}
                   >
-                    <Image
-        loading='lazy'
-        unoptimized  src="/images/search.webp" alt="" width={24} height={24} />
+                    <Image width={24} height={24} src="/images/search.webp" alt="search" />
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -367,9 +388,7 @@ const Header = () => {
                     href="/my-favorites"
                     onClick={handleNavLinkClick}
                   >
-                    <Image
-        loading='lazy'
-        unoptimized  src="/images/heart.webp" alt="" width={24} height={24} />
+                    <Image width={24} height={24} src="/images/heart.webp" alt="heart" />
                     <div className="count">{count?.product_count || 0}</div>
                   </Link>
                 </li>
@@ -382,9 +401,7 @@ const Header = () => {
                     data-bs-target="#offcanvasRight"
                     aria-controls="offcanvasRight"
                   >
-                    <Image
-        loading='lazy'
-        unoptimized  src="/images/shopping-cart.webp" alt="" width={24} height={24} />
+                    <Image width={24} height={24} src="/images/shopping-cart.webp" alt="cart" />
                     <div className="count">{count?.cart_count || 0}</div>
                   </Link>
                 </li>
@@ -434,29 +451,33 @@ const Header = () => {
 const Cart = ({ deleteFromCart, cartList }) => {
   return (
     <>
-      {cartList?.get_cart_details?.length > 0 ? <div className="cart">
-        <div className="cartItem">
-          {cartList?.get_cart_details?.map((item, index) => {
-            return (
-              <CartItemBox
-                key={index}
-                data={item}
-                isQtyFixed={false}
-                isDelete={true}
-                removeItem={deleteFromCart}
-              />
-            );
-          })}
+      {cartList?.get_cart_details?.length > 0 ? (
+        <div className="cart">
+          <div className="cartItem">
+            {cartList?.get_cart_details?.map((item, index) => {
+              return (
+                <CartItemBox
+                  key={index}
+                  data={item}
+                  isQtyFixed={false}
+                  isDelete={true}
+                  removeItem={deleteFromCart}
+                />
+              );
+            })}
+          </div>
+          <OrderSummery
+            data={cartList}
+            title="Checkout"
+            buttonOutlinedLink="/search-product"
+            buttonContainerLink="/checkout"
+            buttonOutlinedText="Continue Shopping"
+            buttonContainerText="Checkout"
+          />
         </div>
-        <OrderSummery
-          data={cartList}
-          title="Checkout"
-          buttonOutlinedLink="/search-product"
-          buttonContainerLink="/checkout"
-          buttonOutlinedText="Continue Shopping"
-          buttonContainerText="Checkout"
-        />
-      </div> : <NodataFound msg={"Your cart is currently empty."} />}
+      ) : (
+        <NodataFound msg={"Your cart is currently empty."} />
+      )}
     </>
   );
 };

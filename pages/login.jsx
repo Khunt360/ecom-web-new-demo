@@ -14,8 +14,10 @@ import { toast } from "react-toastify";
 import LoginRoutes from "@/Components/Routes/LoginRoutes";
 import useCommonApi from "@/hooks/useCommonApi";
 import { useEffect } from "react";
+import Header from "@/Components/Header";
+import { fetchCategoryList } from "@/hooks/useCommonData";
 
-const Login = () => {
+const Login = ({categoryList}) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { getCartList,getCount } = useCommonApi();
@@ -94,6 +96,7 @@ const Login = () => {
         <title>Login || Fast Buy</title>
         <meta name="description" content="Login || Fast Buy"></meta>
       </Head>
+      <Header categoryList={categoryList}/>
       <CommonBreadcrump title="Login" />
       <LoginLayout className="login">
         <div className="form-cont">
@@ -173,3 +176,24 @@ const Login = () => {
 };
 
 export default LoginRoutes(Login);
+
+export async function getStaticProps() {
+  try {
+    // Extract data from the responses
+    const response1 = await fetchCategoryList();
+    const categoryList = response1.categoryList;
+
+    // Return the data as props
+    return {
+      props: {
+        categoryList,
+      },
+      revalidate: 86400, // Re-generate the page every 24 hours (86400 seconds)
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      notFound: true, // Return 404 page if there's an error
+    };
+  }
+}

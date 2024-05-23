@@ -2,7 +2,7 @@ import React from "react";
 import ButtonOutlined from "./ButtonOutlined";
 import ButtonContainer from "./ButtonContainer";
 import { useRouter } from "next/router";
-import Payment from "../Payment";
+// import Payment from "../Payment";
 
 const OrderSummery = ({
   data,

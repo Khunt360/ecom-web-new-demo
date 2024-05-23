@@ -11,8 +11,10 @@ import axios from "@/APiSetUp/axios";
 import { toggleLoader } from "@/redux/userSlice";
 import { useState } from "react";
 import LoginRoutes from "@/Components/Routes/LoginRoutes";
+import Header from "@/Components/Header";
+import { fetchCategoryList } from "@/hooks/useCommonData";
 
-const Signup = () => {
+const Signup = ({categoryList}) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const initialValues = {
@@ -81,6 +83,7 @@ const Signup = () => {
         </div>
       ) : (
       <>
+      <Header categoryList={categoryList}/>
       <CommonBreadcrump title="Sign Up" />
       <LoginLayout>
         <div className="form-cont">
@@ -191,3 +194,24 @@ const Signup = () => {
 };
 
 export default LoginRoutes(Signup);
+
+export async function getStaticProps() {
+  try {
+    // Extract data from the responses
+    const response1 = await fetchCategoryList();
+    const categoryList = response1.categoryList;
+
+    // Return the data as props
+    return {
+      props: {
+        categoryList,
+      },
+      revalidate: 86400, // Re-generate the page every 24 hours (86400 seconds)
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      notFound: true, // Return 404 page if there's an error
+    };
+  }
+}

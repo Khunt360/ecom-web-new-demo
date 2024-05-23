@@ -1,4 +1,3 @@
-import React from "react";
 import FormTitleSubTitle from "../Common/FormTitleSubTitle";
 import UpcomingProductCard from "../Common/UpcomingProductCard";
 import dynamic from "next/dynamic";

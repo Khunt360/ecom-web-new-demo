@@ -3,20 +3,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import useCommonApi from "@/hooks/useCommonApi";
+// import useCommonApi from "@/hooks/useCommonApi";
 import Image from "next/image";
 
-function Footer() {
+function Footer({footerData}) {
   const { auth_token } = useSelector((state) => state.user);
-  const { footerData, getFooter } = useCommonApi();
+  // const { footerData, getFooter } = useCommonApi();
 
   const pathname = usePathname();
   const d = new Date();
   let year = d.getFullYear();
 
-  useEffect(() => {
-    getFooter();
-  }, [getFooter]);
+  // useEffect(() => {
+  //   getFooter();
+  // }, [getFooter]);
 
   //hydration error handle hack
   const [isMounted, setIsMounted] = useState(false);
@@ -57,9 +57,14 @@ function Footer() {
               <div className="row">
                 <div className="fot-main-content">
                   <div className="fot-logo-cont">
-                    <Image
-        loading='lazy'
-        unoptimized  src="/images/fot-logo.webp" alt="logo" width={15} height={15}/>
+                    <div className="fot-logo-cont-container">
+                      <Image
+                        src="/images/fot-logo.webp"
+                        alt="logo"
+                        width={212}
+                        height={50}
+                      />
+                    </div>
                     <p>
                       Shop our beautiful sarees: luxurious silks and vibrant
                       handlooms. Timeless elegance awaits.
@@ -77,7 +82,8 @@ function Footer() {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <i className="fa fa-x-twitter" aria-hidden="true" />
+                        {/* <i className="fa fa-x-twitter" aria-hidden="true" /> */}
+                        <Image src="/images/Tweetx.webp" alt="twitter" width={19} height={19} />
                       </a>
                       <a
                         href={footerData?.instagram_link}
@@ -129,17 +135,19 @@ function Footer() {
                       <li>
                         <Link href="/faq">FAQ</Link>
                       </li>
-                      <li>
-                        {/* <Link href="#">Size Guide</Link> */}
-                      </li>
+                      <li>{/* <Link href="#">Size Guide</Link> */}</li>
                       <li>
                         <Link href="/shipping-policy">Shipping Policy</Link>
                       </li>
                       <li>
-                        <Link href="/return-exchange-policy">Return & Exchange Policy</Link>
+                        <Link href="/return-exchange-policy">
+                          Return & Exchange Policy
+                        </Link>
                       </li>
                       <li>
-                        <Link href="/terms-and-conditions">Terms and Conditions</Link>
+                        <Link href="/terms-and-conditions">
+                          Terms and Conditions
+                        </Link>
                       </li>
                       <li>
                         <Link href="/privacy-policy">Privacy Policy</Link>
@@ -178,8 +186,11 @@ function Footer() {
       <div className="copy">
         <div className="copy-img">
           <Image
-        loading='lazy'
-        unoptimized  src="/images/fot-pay.webp" alt="logo" width={15} height={15}/>
+            width={422}
+            height={24}
+            src="/images/fot-pay.webp"
+            alt="logo"
+          />
         </div>
         <div className="copy-lft">
           <p>Copyright © {year} ecommerce.com | All Rights Reserved</p>

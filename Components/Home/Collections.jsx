@@ -1,5 +1,7 @@
 import { BASE_URL } from "@/APiSetUp/axios";
 import Link from "next/link";
+import ImageComponent from "../NextComponent/ImageComponent";
+import Image from "next/image";
 
 const Collections = ({ category1, category2 }) => {
   return (
@@ -15,34 +17,46 @@ const Collections = ({ category1, category2 }) => {
               <Link href={`/search-product?categoryId=${category1?.id}`}>
                 shop now
               </Link>
-              <div className="mainImg">
-                <img
-                  src="/images/product-frame.webp"
-                  alt=""
-                  className="subImage"
-                />
-                <img
-                  src={BASE_URL + category1?.image}
-                  alt=""
-                  className="p-4 fr-img"
-                />
-              </div>
+              {category1?.image && (
+                <div className="mainImg">
+                  <Image
+                    src="/images/product-frame.webp"
+                    alt="frame"
+                    className="subImage"
+                    width={626}
+                    height={767}
+                  />
+                  <div className="p-4 fr-img">
+                    <ImageComponent
+                      src={BASE_URL + category1?.image}
+                      alt="product"
+                      fill
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="col-md-6">
             <div className="mainBox2">
-              <div className="mainImg">
-                <img
-                  src="/images/product-frame.webp"
-                  className="subImage"
-                  alt=""
-                />
-                <img
-                  src={BASE_URL + category2?.image}
-                  alt=""
-                  className="p-4 fr-img"
-                />
-              </div>
+              {category2?.image && (
+                <div className="mainImg">
+                  <Image
+                    src="/images/product-frame.webp"
+                    className="subImage"
+                    alt="frame"
+                    width={626}
+                    height={767}
+                  />
+                  <div className="p-4 fr-img">
+                    <ImageComponent
+                      src={BASE_URL + category2?.image}
+                      alt="product"
+                      fill
+                    />
+                  </div>
+                </div>
+              )}
               <div className="content">
                 <h3>{category2?.name}</h3>
                 <span>{category2?.description}</span>

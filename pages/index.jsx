@@ -100,6 +100,7 @@ export async function getStaticProps() {
     const categoryList= response1.categoryList;
     const footerData = await fetchFooter();
 
+    // Return the data as props
     return {
       props: {
         homeData,

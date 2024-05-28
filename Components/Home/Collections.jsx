@@ -31,6 +31,8 @@ const Collections = ({ category1, category2 }) => {
                       src={BASE_URL + category1?.image}
                       alt="product"
                       fill
+                      priority={true}
+                      placeholder='blur'
                     />
                   </div>
                 </div>
@@ -53,6 +55,8 @@ const Collections = ({ category1, category2 }) => {
                       src={BASE_URL + category2?.image}
                       alt="product"
                       fill
+                      priority={true}
+                      placeholder='blur'
                     />
                   </div>
                 </div>

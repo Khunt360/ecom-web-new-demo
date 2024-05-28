@@ -61,8 +61,7 @@ function Footer({footerData}) {
                       <Image
                         src="/images/fot-logo.webp"
                         alt="logo"
-                        width={212}
-                        height={50}
+                        fill
                       />
                     </div>
                     <p>

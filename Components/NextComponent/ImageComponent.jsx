@@ -1,4 +1,6 @@
 import Image from "next/image";
+import getBlurDataURL from "@/utils/blurDataURL";
+import defaultImage from '@/public/images/placeholder.webp';
 
 const ImageComponent = ({
   src,
@@ -9,7 +11,9 @@ const ImageComponent = ({
   alt,
   sizes,
   ClassName,
+  placeholder,
 }) => {
+  const blurDataURL = getBlurDataURL('your-image.jpg');
   const myLoader = () => {
     return `${src}`;
   };
@@ -24,6 +28,8 @@ const ImageComponent = ({
       fill={fill}
       sizes={sizes}
       ClassName={ClassName}
+      placeholder={placeholder}
+      blurDataURL={placeholder === "blur" ? blurDataURL : undefined}
     />
   );
 };

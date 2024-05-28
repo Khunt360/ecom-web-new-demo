@@ -24,6 +24,7 @@ const SellingProductCard = ({ item }) => {
                 ? BASE_URL + "/" + item?.get_defult_image?.image
                 : "/images/saree1.webp"
             }
+            placeholder='blur'
             alt="product"
             fill
           />

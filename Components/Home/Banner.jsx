@@ -10,10 +10,11 @@ function Banner({ banner, imgUrl }) {
       <div className="banner-cont">
         <ImageComponent
           src={BASE_URL + imgUrl + banner?.image}
-          fill={true}
+          fill
           alt="banner"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={true}
+          placeholder="empty"
         />
         </div>
         <div className="container-fluid">

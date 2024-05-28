@@ -11,37 +11,9 @@ import axios from "@/APiSetUp/axios";
 import SEOPart from "@/Components/SEOPart";
 import { SeoData } from "@/SEOData/SeoData";
 import Layout from "@/Components/Layout";
-import useCommonApi from "@/hooks/useCommonApi";
-// import { useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { fetchCategoryList, fetchFooter } from "@/hooks/useCommonData";
 
 function Home({ homeData, bestSellingData, categoryList, footerData }) {
-  const { user } = useSelector((state) => state.user);
-  const router = useRouter();
-  const {
-    // getUserData,
-    // deleteFromCart,
-    getCartList,
-    getCount,
-    // getCategoryList,
-    // categoryList,
-  } = useCommonApi();
-  // const fetchData = useCallback(async () => {
-  //   await Promise.all([getCategoryList()]);
-  // }, [getCategoryList]);
-
-  // useEffect(() => {
-  //   fetchData();
-  //   if (user) {
-  //     getUserData();
-  //   }
-  //   if (router?.pathname !== "/login") {
-  //     getCartList();
-  //     getCount();
-  //   }
-  // }, []);
 
   return (
     <>

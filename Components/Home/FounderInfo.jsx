@@ -1,7 +1,6 @@
 import { BASE_URL } from "@/APiSetUp/axios";
 import ImageComponent from "../NextComponent/ImageComponent";
 
-
 const FounderInfo = ({ heading, subheading, sign, name }) => {
   return (
     <div>

@@ -29,6 +29,7 @@ const UpcomingProductCard = ({ item,addRemoveToWishlist, isWishlist, slNo }) => 
               }
               alt="product"
               fill
+              placeholder='blur'
             />
             </div>
           </Link>
